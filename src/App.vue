@@ -4,9 +4,9 @@ import ImageQuestion from './components/ImageQuestion.vue'
 import IncompleteTextQuestion from './components/IncompleteTextQuestion.vue'
 import MultipleChoiceQuestion from './components/MultipleChoiceQuestion.vue'
 import QuestionSidebar from './components/QuestionSidebar.vue'
-import questionsData from '../../questions.json'
+import questionsData from '../public/questions.json'
 
-const imageModules = import.meta.glob('../../images/*', { eager: true, import: 'default' })
+const imageModules = import.meta.glob('../public/images/*', { eager: true, import: 'default' })
 
 const questions = ref([])
 const currentIndex = ref(0)
