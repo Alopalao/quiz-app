@@ -1,0 +1,80 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "type": "image",
+      "prompt": "Identify the motherboard ports in the image.",
+      "image": {
+        "src": "images/motherboard.jpg",
+        "alt": "Motherboard diagram"
+      },
+      "dropdowns": [
+        {
+          "id": "pcie_slot",
+          "label": "PCIe slot",
+          "x": 0.42,
+          "y": 0.28,
+          "width": 0.12,
+          "options": ["PCIe x1", "PCIe x4", "PCIe x16", "M.2 slot"]
+        },
+        {
+          "id": "sata_port",
+          "label": "SATA port",
+          "x": 0.78,
+          "y": 0.62,
+          "width": 0.12,
+          "options": ["SATA data", "USB header", "Fan header", "Audio header"]
+        },
+        {
+          "id": "fan_header",
+          "label": "Fan header",
+          "x": 0.18,
+          "y": 0.72,
+          "width": 0.12,
+          "options": ["CPU fan", "Case fan", "RGB header", "SATA power"]
+        }
+      ],
+      "correct_answers": {
+        "pcie_slot": "PCIe x16",
+        "sata_port": "SATA data",
+        "fan_header": "CPU fan"
+      }
+    },
+    {
+      "id": "q2",
+      "type": "incomplete_text",
+      "prompt": "Complete the sentence by selecting the correct terms.",
+      "parts": [
+        { "type": "text", "value": "The motherboard connects the CPU to the " },
+        {
+          "type": "blank",
+          "id": "blank_1",
+          "options": ["RAM", "power supply", "case fans", "monitor"]
+        },
+        { "type": "text", "value": " and stores configuration settings in the " },
+        {
+          "type": "blank",
+          "id": "blank_2",
+          "options": ["BIOS/UEFI", "GPU", "SSD", "cooler"]
+        },
+        { "type": "text", "value": "." }
+      ],
+      "correct_answers": {
+        "blank_1": "RAM",
+        "blank_2": "BIOS/UEFI"
+      }
+    },
+    {
+      "id": "q3",
+      "type": "multiple_choice",
+      "prompt": "Which connector is typically used for fast storage on modern motherboards?",
+      "options": [
+        "M.2",
+        "VGA",
+        "RJ-11",
+        "PS/2"
+      ],
+      "correct_answers": ["M.2"]
+    }
+  ]
+}
