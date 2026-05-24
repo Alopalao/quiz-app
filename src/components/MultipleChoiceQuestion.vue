@@ -59,23 +59,23 @@ function onChange(value) {
   align-items: center;
   gap: 0.8rem;
   background: #fffaf0;
-  border: 1px solid #e7d7bc;
-  border-radius: 18px;
+  border: 0.0625rem solid #e7d7bc;
+  border-radius: 1.125rem;
   padding: 1rem 1.1rem;
   color: #1a262b;
   cursor: pointer;
 }
 
 input {
-  width: 18px;
-  height: 18px;
+  width: 1.125rem;
+  height: 1.125rem;
   accent-color: #c1661b;
 }
 
 .choice-feedback {
   background: #f7efe3;
-  border: 1px solid #e2d0b1;
-  border-radius: 18px;
+  border: 0.0625rem solid #e2d0b1;
+  border-radius: 1.125rem;
   padding: 1rem 1.1rem;
   color: #1f2a2f;
 }

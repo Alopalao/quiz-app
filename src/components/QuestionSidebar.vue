@@ -50,10 +50,10 @@ function statusLabel(questionId, stateByQuestion) {
 
 <style scoped>
 .sidebar {
-  width: 320px;
-  min-width: 260px;
+  width: 20rem;
+  min-width: 16.25rem;
   background: linear-gradient(180deg, #13333e 0%, #0c1f28 100%);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 0.0625rem solid rgba(255, 255, 255, 0.08);
   padding: 1rem 0.75rem;
   overflow-y: auto;
   height: 100vh;
@@ -63,7 +63,7 @@ function statusLabel(questionId, stateByQuestion) {
   color: #f5f0e8;
   font-size: 1rem;
   padding: 0 0.5rem 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.08);
   margin: 0 0 0.5rem;
 }
 
@@ -79,10 +79,10 @@ ul {
   grid-template-rows: auto auto;
   gap: 0 0.5rem;
   padding: 0.6rem 0.5rem;
-  border-radius: 12px;
-  margin-bottom: 4px;
+  border-radius: 0.75rem;
+  margin-bottom: 0.25rem;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 0.0625rem solid transparent;
   transition: background 0.15s, border-color 0.15s;
 }
 
@@ -117,16 +117,16 @@ ul {
   font-weight: 600;
   color: #87d7c8;
   background: rgba(0, 0, 0, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1px 5px;
-  border-radius: 4px;
+  border: 0.0625rem solid rgba(255, 255, 255, 0.1);
+  padding: 0.0625rem 0.3125rem;
+  border-radius: 0.25rem;
 }
 
 .q-type,
 .q-status {
   font-size: 0.68rem;
-  padding: 1px 5px;
-  border-radius: 4px;
+  padding: 0.0625rem 0.3125rem;
+  border-radius: 0.25rem;
 }
 
 .q-type {
@@ -141,7 +141,7 @@ ul {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 240px;
+  max-width: 15rem;
   margin: 0.25rem 0 0;
 }
 
@@ -151,7 +151,7 @@ ul {
 }
 
 .status-not-started {
-  border-left: 3px solid #8aa1a8;
+  border-left: 0.1875rem solid #8aa1a8;
 }
 
 .status-incomplete .q-status {
@@ -160,7 +160,7 @@ ul {
 }
 
 .status-incomplete {
-  border-left: 3px solid #f0b35b;
+  border-left: 0.1875rem solid #f0b35b;
 }
 
 .status-complete .q-status {
@@ -169,7 +169,7 @@ ul {
 }
 
 .status-complete {
-  border-left: 3px solid #7bc8e6;
+  border-left: 0.1875rem solid #7bc8e6;
 }
 
 .status-correct .q-status {
@@ -178,7 +178,7 @@ ul {
 }
 
 .status-correct {
-  border-left: 3px solid #6fdd9c;
+  border-left: 0.1875rem solid #6fdd9c;
 }
 
 .status-checked .q-status {
@@ -187,15 +187,15 @@ ul {
 }
 
 .status-checked {
-  border-left: 3px solid #ef8b81;
+  border-left: 0.1875rem solid #ef8b81;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60rem) {
   .sidebar {
     width: 100%;
     min-width: 0;
     height: auto;
-    max-height: 320px;
+    max-height: 20rem;
   }
 
   .q-prompt {
