@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const props = defineProps({
   question: {
@@ -18,6 +18,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update-answer'])
 const naturalSize = ref({ width: 0, height: 0 })
+const activeHintId = ref('')
 
 function onChange(fieldId, value) {
   emit('update-answer', { fieldId, value })
@@ -85,6 +86,27 @@ function dropdownTone(fieldId) {
   return selectedValue === correctValue ? 'select-correct' : 'select-incorrect'
 }
 
+function hasHint(dropdown) {
+  return typeof dropdown.hint === 'string' && dropdown.hint.trim().length > 0
+}
+
+function toggleHint(dropdownId) {
+  const dropdown = props.question.dropdowns.find((item) => item.id === dropdownId)
+
+  if (!dropdown || !hasHint(dropdown)) {
+    return
+  }
+
+  activeHintId.value = activeHintId.value === dropdownId ? '' : dropdownId
+}
+
+watch(
+  () => props.question.id,
+  () => {
+    activeHintId.value = ''
+  },
+)
+
 const feedbackRows = computed(() => {
   if (!props.checked) {
     return []
@@ -125,7 +147,19 @@ const feedbackRows = computed(() => {
           :style="hotspotStyle(dropdown)"
         >
           <div class="dropdown-row">
-            <span class="dropdown-number">{{ index + 1 }}</span>
+            <button
+              type="button"
+              class="dropdown-number marker-button"
+              :class="hasHint(dropdown) ? 'has-hint' : 'no-hint'"
+              :disabled="!hasHint(dropdown)"
+              :aria-label="hasHint(dropdown) ? `Show hint for marker ${index + 1}` : `Marker ${index + 1}`"
+              @click="toggleHint(dropdown.id)"
+            >
+              {{ index + 1 }}
+            </button>
+            <div v-if="activeHintId === dropdown.id && hasHint(dropdown)" class="hint-bubble">
+              {{ dropdown.hint }}
+            </div>
             <select
               :id="dropdown.id"
               :aria-label="dropdown.label"
@@ -200,11 +234,27 @@ const feedbackRows = computed(() => {
 }
 
 .dropdown-row {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.35rem;
   width: 100%;
   height: 100%;
+}
+
+.hint-bubble {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.35rem);
+  z-index: 30;
+  max-width: 14rem;
+  background: #f2f8fb;
+  border: 0.0625rem solid #c8dde7;
+  border-radius: 0.6rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.78rem;
+  color: #1b3641;
+  box-shadow: 0 0.35rem 0.9rem rgba(23, 49, 62, 0.18);
 }
 
 .dropdown-number,
@@ -220,6 +270,23 @@ const feedbackRows = computed(() => {
   background: #1f4f63;
   color: #f1f8fb;
   flex: 0 0 auto;
+}
+
+.marker-button {
+  border: 0;
+  cursor: pointer;
+}
+
+.marker-button.no-hint {
+  cursor: default;
+}
+
+.marker-button:disabled {
+  opacity: 1;
+}
+
+.marker-button.has-hint {
+  box-shadow: 0 0 0 0.125rem rgba(50, 101, 122, 0.35);
 }
 
 select {

@@ -39,6 +39,7 @@ button {
 .quiz-shell {
   min-height: 100vh;
   display: flex;
+  align-items: flex-start;
 }
 
 .quiz-main {
@@ -46,6 +47,7 @@ button {
   padding: 2rem;
   display: grid;
   gap: 1.5rem;
+  align-content: start;
 }
 
 .quiz-header {
@@ -95,6 +97,8 @@ h2 {
   padding: 1.5rem;
   display: grid;
   gap: 1.5rem;
+  align-content: start;
+  grid-auto-rows: max-content;
 }
 
 .state-panel {

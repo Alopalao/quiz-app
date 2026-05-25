@@ -1,41 +1,97 @@
 {
   "questions": [
+{
+  "id": "q1",
+  "type": "image_legend_dropdown",
+  "prompt": "Identify the motherboard I/O back panel ports labeled A through K in the image.",
+  "image": {
+    "src": "images/motherboard_io.jpg",
+    "alt": "Motherboard I/O back panel ports diagram",
+    "width": 500,
+    "height": 193
+  },
+  "legends": [
     {
-      "id": "q1",
-      "type": "image_legend_dropdown",
-      "prompt": "Identify the motherboard ports in the image.",
-      "image": {
-        "src": "images/motherboard.jpg",
-        "alt": "Motherboard diagram",
-        "width": 700,
-        "height": 439
-      },
-      "legends": [
-        {
-          "id": "pcie_slot",
-          "marker": "1",
-          "label": "Arrow 1",
-          "options": ["PCIe x1", "PCIe x4", "PCIe x16", "M.2 slot"]
-        },
-        {
-          "id": "sata_port",
-          "marker": "2",
-          "label": "Arrow 2",
-          "options": ["SATA data", "USB header", "Fan header", "Audio header"]
-        },
-        {
-          "id": "fan_header",
-          "marker": "3",
-          "label": "Arrow 3",
-          "options": ["CPU fan", "Case fan", "RGB header", "SATA power"]
-        }
-      ],
-      "correct_answers": {
-        "pcie_slot": "PCIe x16",
-        "sata_port": "SATA data",
-        "fan_header": "CPU fan"
-      }
+      "id": "port_a",
+      "marker": "A",
+      "label": "Port A",
+      "options": ["PS/2", "Serial Port", "VGA"]
     },
+    {
+      "id": "port_b",
+      "marker": "B",
+      "label": "Port B",
+      "options": ["USB 2.0", "USB 3.0", "eSATA", "FireWire"]
+    },
+    {
+      "id": "port_c",
+      "marker": "C",
+      "label": "Port C",
+      "options": ["Optical Audio (S/PDIF)", "Coaxial Audio", "DisplayPort", "HDMI"]
+    },
+    {
+      "id": "port_d",
+      "marker": "D",
+      "label": "Port D",
+      "options": ["HDMI", "DisplayPort", "eSATA", "USB-C"]
+    },
+    {
+      "id": "port_e",
+      "marker": "E",
+      "label": "Port E",
+      "options": ["VGA", "DVI-D", "Serial (COM)", "Parallel Port"]
+    },
+    {
+      "id": "port_f",
+      "marker": "F",
+      "label": "Port F",
+      "options": ["DVI-I", "DVI-D", "VGA", "IDE"]
+    },
+    {
+      "id": "port_g",
+      "marker": "G",
+      "label": "Port G",
+      "options": ["USB 3.2", "eSATA", "FireWire 800", "USB 2.0"]
+    },
+    {
+      "id": "port_h",
+      "marker": "H",
+      "label": "Port H",
+      "options": ["FireWire 400 (IEEE 1394)", "HDMI", "DisplayPort", "eSATA"]
+    },
+    {
+      "id": "port_i",
+      "marker": "I",
+      "label": "Port I",
+      "options": ["RJ-45", "RJ-11", "Serial Port", "S/PDIF"]
+    },
+    {
+      "id": "port_j",
+      "marker": "J",
+      "label": "Port J",
+      "options": ["USB 2.0", "USB 3.0", "USB-C", "Thunderbolt"]
+    },
+    {
+      "id": "port_k",
+      "marker": "K",
+      "label": "Ports K",
+      "options": ["Analog Audio Jacks", "S/PDIF Optical", "Component Video", "RCA Jacks"]
+    }
+  ],
+  "correct_answers": {
+    "port_a": "PS/2",
+    "port_b": "USB 2.0",
+    "port_c": "Optical Audio (S/PDIF)",
+    "port_d": "HDMI",
+    "port_e": "VGA",
+    "port_f": "DVI-D",
+    "port_g": "USB 3.2 Gen 2",
+    "port_h": "FireWire 400 (IEEE 1394)",
+    "port_i": "RJ-45",
+    "port_j": "USB 2.0",
+    "port_k": "Analog Audio Jacks"
+  }
+},
     {
       "id": "q2",
       "type": "incomplete_text",
@@ -163,6 +219,70 @@
     "micro_atx_dim": "9.6 x 9.6 inches",
     "mini_itx_name": "Mini-ITX",
     "mini_itx_dim": "6.7 x 6.7 inches"
+  }
+},
+{
+  "id": "q5",
+  "type": "image",
+  "prompt": "Identify the specific variation of each DVI connector shown in the diagram.",
+  "image": {
+    "src": "images/dvi_types.jpg",
+    "alt": "Comparison of different DVI connector pin layouts"
+  },
+  "dropdowns": [
+    {
+      "id": "dvi_i_single",
+      "label": "Connector 1",
+      "x": 0.27,
+      "y": 0.28,
+      "width": 0.40,
+      "height": 0.12,
+      "options": ["DVI-I (Single Link)", "DVI-D (Single Link)", "DVI-I (Dual Link)", "DVI-A"],
+      "hint": "IDK"
+    },
+    {
+      "id": "dvi_d_single",
+      "label": "Connector 2",
+      "x": 0.73,
+      "y": 0.28,
+      "width": 0.40,
+      "height": 0.12,
+      "options": ["DVI-D (Single Link)", "DVI-I (Single Link)", "DVI-D (Dual Link)", "DVI-A"]
+    },
+    {
+      "id": "dvi_i_dual",
+      "label": "Connector 3",
+      "x": 0.27,
+      "y": 0.58,
+      "width": 0.40,
+      "height": 0.12,
+      "options": ["DVI-I (Dual Link)", "DVI-I (Single Link)", "DVI-D (Dual Link)", "DVI-A"]
+    },
+    {
+      "id": "dvi_d_dual",
+      "label": "Connector 4",
+      "x": 0.73,
+      "y": 0.58,
+      "width": 0.40,
+      "height": 0.12,
+      "options": ["DVI-D (Dual Link)", "DVI-D (Single Link)", "DVI-I (Dual Link)", "DVI-A"]
+    },
+    {
+      "id": "dvi_a",
+      "label": "Connector 5",
+      "x": 0.48,
+      "y": 0.92,
+      "width": 0.40,
+      "height": 0.12,
+      "options": ["DVI-A", "DVI-I (Single Link)", "DVI-D (Single Link)", "M1-DA"]
+    }
+  ],
+  "correct_answers": {
+    "dvi_i_single": "DVI-I (Single Link)",
+    "dvi_d_single": "DVI-D (Single Link)",
+    "dvi_i_dual": "DVI-I (Dual Link)",
+    "dvi_d_dual": "DVI-D (Dual Link)",
+    "dvi_a": "DVI-A"
   }
 }
   ]
