@@ -284,6 +284,211 @@
     "dvi_d_dual": "DVI-D (Dual Link)",
     "dvi_a": "DVI-A"
   }
+},
+{
+  "id": "q6",
+  "type": "image_legend_dropdown",
+  "prompt": "Identify the internal components of a laser printer labeled 1 through 12.",
+  "image": {
+    "src": "images/laser_printer_inside.jpg",
+    "alt": "Internal components and paper path of a laser printer",
+    "width": 600,
+    "height": 530
+  },
+  "legends": [
+    {
+      "id": "paper_sensor",
+      "marker": "1",
+      "label": "Component 1",
+      "hint": "Detects whether paper is loaded in the tray or if a paper feed error has occurred.",
+      "options": ["Paper Sensor", "Registration Roller", "Transfer Roller", "Exit Roller"]
+    },
+    {
+      "id": "opc_drum",
+      "marker": "2",
+      "label": "Component 2",
+      "hint": "The central light-sensitive component that holds the electrostatic image drawn by the laser.",
+      "options": ["Imaging Drum", "Developer Roller", "Fuser Roller", "Transfer Roller"]
+    },
+    {
+      "id": "primary_charge_roller",
+      "marker": "3",
+      "label": "Component 3",
+      "hint": "Applies a uniform negative charge to the surface of the imaging drum during the charging phase.",
+      "options": ["Primary Charge Roller (PCR)", "Transfer Roller", "Cleaning Blade", "Laser Assembly"]
+    },
+    {
+      "id": "laser_beam",
+      "marker": "4",
+      "label": "Component 4",
+      "hint": "The light source responsible for exposing the drum and neutralizing specific charged areas.",
+      "options": ["Laser Beam", "Corona Wire", "Transfer Roller", "HVPS Output"]
+    },
+    {
+      "id": "scanning_mirror",
+      "marker": "5",
+      "label": "Component 5",
+      "hint": "The internal optical mirror system that directs the laser beam across the imaging drum.",
+      "options": ["Laser Scanning Assembly", "Fuser Unit", "Registration Guide", "Pickup Roller"]
+    },
+    {
+      "id": "developer_roller",
+      "marker": "6",
+      "label": "Component 6",
+      "hint": "Prepares and moves toner particles from the hopper onto the exposed areas of the imaging drum.",
+      "options": ["Developing Roller", "Pickup Roller", "Separation Pad", "Transfer Roller"]
+    },
+    {
+      "id": "toner_hopper",
+      "marker": "7",
+      "label": "Component 7",
+      "hint": "The replaceable reservoir that holds the fine plastic-based powder used for printing.",
+      "options": ["Toner Cartridge", "Waste Toner Container", "Fuser Assembly", "Paper Cassette"]
+    },
+    {
+      "id": "pickup_rollers",
+      "marker": "8",
+      "label": "Component 8",
+      "hint": "Picks up paper from the tray and feeds it into the printer.",
+      "options": ["Registration Rollers", "Pickup Rollers", "Exit Rollers", "Duplexing Assembly"]
+    },
+    {
+      "id": "paper_tray",
+      "marker": "9",
+      "label": "Component 9",
+      "hint": "The removable physical tray where the blank paper stock is held.",
+      "options": ["Paper Tray", "Output Bin", "Duplex Tray", "Bypass Slot"]
+    },
+    {
+      "id": "transfer_roller",
+      "marker": "10",
+      "label": "Component 10",
+      "hint": "Puts a strong positive charge on the back of the paper to pull toner off the drum.",
+      "options": ["Transfer Roller", "Primary Charge Roller (PCR)", "Developing Roller", "Pickup Roller"]
+    },
+    {
+      "id": "cleaning_blade",
+      "marker": "11",
+      "label": "Component 11",
+      "hint": "Physically removes any residual toner dust left on the drum before the next printing cycle.",
+      "options": ["Cleaning Blade", "Separation Pad", "Registration Roller", "Fuser Pressure Roller"]
+    },
+    {
+      "id": "fuser_assembly",
+      "marker": "12",
+      "label": "Component 12",
+      "hint": "Applies intense heat and pressure to permanently bond the loose toner into the paper fibers.",
+      "options": ["Fuser Assembly", "Transfer Unit", "Developing Roller", "Duplex Assembly"]
+    }
+  ],
+  "correct_answers": {
+    "paper_sensor": "Paper Sensor",
+    "opc_drum": "Imaging Drum",
+    "primary_charge_roller": "Primary Charge Roller (PCR)",
+    "laser_beam": "Laser Beam",
+    "scanning_mirror": "Laser Scanning Assembly",
+    "developer_roller": "Developing Roller",
+    "toner_hopper": "Toner Cartridge",
+    "pickup_rollers": "Pickup Rollers",
+    "paper_tray": "Paper Tray",
+    "transfer_roller": "Transfer Roller",
+    "cleaning_blade": "Cleaning Blade",
+    "fuser_assembly": "Fuser Assembly"
+  }
+},
+{
+  "id": "q7",
+  "type": "table",
+  "prompt": "Match each motherboard component with its main function and typical location.",
+  "columns": [
+    { "id": "component", "label": "Component" },
+    { "id": "function", "label": "Function" },
+    { "id": "location", "label": "Typical Location" }
+  ],
+  "rows": [
+    {
+      "id": "row_1",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row1_component",
+          "label": "Row 1 Component",
+          "options": [
+            "CPU Socket",
+            "DIMM Slots",
+            "M.2 Slot",
+            "24-pin ATX"
+          ]
+        },
+        { "columnId": "function", "type": "text", "value": "Holds and connects the processor" },
+        { "columnId": "location", "type": "text", "value": "Upper center area" }
+      ]
+    },
+    {
+      "id": "row_2",
+      "cells": [
+        { "columnId": "component", "type": "text", "value": "DIMM Slots" },
+        {
+          "columnId": "function",
+          "type": "dropdown",
+          "fieldId": "dimm_slots_function",
+          "label": "DIMM Slots Function",
+          "options": [
+            "Holds system memory modules",
+            "Connects graphics card power",
+            "Controls fan speed",
+            "Manages RAID arrays"
+          ]
+        },
+        { "columnId": "location", "type": "text", "value": "Right of CPU socket" }
+      ]
+    },
+    {
+      "id": "row_3",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row3_component",
+          "label": "Row 3 Component",
+          "options": [
+            "CPU Socket",
+            "DIMM Slots",
+            "M.2 Slot",
+            "24-pin ATX"
+          ]
+        },
+        { "columnId": "function", "type": "text", "value": "Connects high-speed SSDs" },
+        { "columnId": "location", "type": "text", "value": "Between PCIe slots" }
+      ]
+    },
+    {
+      "id": "row_4",
+      "cells": [
+        { "columnId": "component", "type": "text", "value": "24-pin ATX" },
+        {
+          "columnId": "function",
+          "type": "dropdown",
+          "fieldId": "atx_24pin_function",
+          "label": "24-pin ATX Function",
+          "options": [
+            "Main power input for motherboard",
+            "Direct CPU cooling control",
+            "Data port for SATA drives",
+            "Audio front-panel connection"
+          ]
+        },
+        { "columnId": "location", "type": "text", "value": "Board right edge" }
+      ]
+    }
+  ],
+  "correct_answers": {
+    "row1_component": "CPU Socket",
+    "dimm_slots_function": "Holds system memory modules",
+    "row3_component": "M.2 Slot",
+    "atx_24pin_function": "Main power input for motherboard"
+  }
 }
   ]
 }

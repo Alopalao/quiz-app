@@ -5,6 +5,7 @@ import ImageLegendDropdownQuestion from './components/ImageLegendDropdownQuestio
 import IncompleteTextQuestion from './components/IncompleteTextQuestion.vue'
 import MultipleChoiceQuestion from './components/MultipleChoiceQuestion.vue'
 import QuestionSidebar from './components/QuestionSidebar.vue'
+import TableQuestion from './components/TableQuestion.vue'
 import questionsData from '../public/questions.json'
 
 const imageModules = import.meta.glob('../public/images/*', { eager: true, import: 'default' })
@@ -74,6 +75,14 @@ function createEmptyAnswer(question) {
     return { selection: '' }
   }
 
+  if (question.type === 'table') {
+    const dropdownCells = question.rows
+      .flatMap((row) => row.cells)
+      .filter((cell) => cell.type === 'dropdown')
+
+    return Object.fromEntries(dropdownCells.map((cell) => [cell.fieldId, '']))
+  }
+
   return {}
 }
 
@@ -131,6 +140,13 @@ function getFieldIds(question) {
     return ['selection']
   }
 
+  if (question.type === 'table') {
+    return question.rows
+      .flatMap((row) => row.cells)
+      .filter((cell) => cell.type === 'dropdown')
+      .map((cell) => cell.fieldId)
+  }
+
   return []
 }
 
@@ -163,6 +179,15 @@ function checkCurrentQuestion() {
   }
 
   checked[currentQuestion.value.id] = true
+}
+
+function clearCurrentAnswers() {
+  if (!currentQuestion.value) {
+    return
+  }
+
+  const question = currentQuestion.value
+  checked[question.id] = false
 }
 
 function previousQuestion() {
@@ -254,9 +279,20 @@ function goToQuestion(index) {
           @update-answer="updateAnswer(currentQuestion.id, $event.fieldId, $event.value)"
         />
 
+        <TableQuestion
+          v-else-if="currentQuestion.type === 'table'"
+          :question="currentQuestion"
+          :answers="answers[currentQuestion.id]"
+          :checked="checked[currentQuestion.id]"
+          @update-answer="updateAnswer(currentQuestion.id, $event.fieldId, $event.value)"
+        />
+
         <footer class="question-actions">
           <button class="nav-button secondary" :disabled="currentIndex === 0" @click="previousQuestion">
             Previous
+          </button>
+          <button class="nav-button secondary" @click="clearCurrentAnswers">
+            Clear Answers
           </button>
           <button class="nav-button primary" @click="checkCurrentQuestion">
             Check Answer
