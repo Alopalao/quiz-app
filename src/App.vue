@@ -1,6 +1,7 @@
 <script setup>
 import { computed, reactive, ref } from 'vue'
 import ImageQuestion from './components/ImageQuestion.vue'
+import ImageLegendDropdownQuestion from './components/ImageLegendDropdownQuestion.vue'
 import IncompleteTextQuestion from './components/IncompleteTextQuestion.vue'
 import MultipleChoiceQuestion from './components/MultipleChoiceQuestion.vue'
 import QuestionSidebar from './components/QuestionSidebar.vue'
@@ -59,6 +60,10 @@ function createEmptyAnswer(question) {
     return Object.fromEntries(question.dropdowns.map((dropdown) => [dropdown.id, '']))
   }
 
+  if (question.type === 'image_legend_dropdown') {
+    return Object.fromEntries(question.legends.map((legend) => [legend.id, '']))
+  }
+
   if (question.type === 'incomplete_text') {
     return Object.fromEntries(
       question.parts.filter((part) => part.type === 'blank').map((part) => [part.id, '']),
@@ -87,7 +92,11 @@ function initializeQuestions() {
 }
 
 function normalizeQuestion(question) {
-  if (question.type !== 'image' || !question.image?.src) {
+  if (!question.image?.src) {
+    return question
+  }
+
+  if (!['image', 'image_legend_dropdown'].includes(question.type)) {
     return question
   }
 
@@ -108,6 +117,10 @@ function resolveImageSource(relativePath) {
 function getFieldIds(question) {
   if (question.type === 'image') {
     return question.dropdowns.map((dropdown) => dropdown.id)
+  }
+
+  if (question.type === 'image_legend_dropdown') {
+    return question.legends.map((legend) => legend.id)
   }
 
   if (question.type === 'incomplete_text') {
@@ -211,6 +224,14 @@ function goToQuestion(index) {
 
         <ImageQuestion
           v-if="currentQuestion.type === 'image'"
+          :question="currentQuestion"
+          :answers="answers[currentQuestion.id]"
+          :checked="checked[currentQuestion.id]"
+          @update-answer="updateAnswer(currentQuestion.id, $event.fieldId, $event.value)"
+        />
+
+        <ImageLegendDropdownQuestion
+          v-else-if="currentQuestion.type === 'image_legend_dropdown'"
           :question="currentQuestion"
           :answers="answers[currentQuestion.id]"
           :checked="checked[currentQuestion.id]"

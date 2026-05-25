@@ -53,10 +53,8 @@ function blankTone(fieldId) {
               class="inline-feedback"
               :class="blankTone(part.id) === 'select-correct' ? 'is-correct' : 'is-incorrect'"
             >
-              <span v-if="blankTone(part.id) === 'select-correct'">Correct.</span>
-              <span v-else>
-                Your answer: <strong>{{ answers[part.id] || 'No answer selected' }}</strong>
-                | Correct: <strong>{{ question.correct_answers[part.id] }}</strong>
+              <span v-if="blankTone(part.id) !== 'select-correct'">
+                <strong>{{ question.correct_answers[part.id] }}</strong>
               </span>
             </span>
           </span>

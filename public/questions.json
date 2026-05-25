@@ -2,7 +2,7 @@
   "questions": [
     {
       "id": "q1",
-      "type": "image",
+      "type": "image_legend_dropdown",
       "prompt": "Identify the motherboard ports in the image.",
       "image": {
         "src": "images/motherboard.jpg",
@@ -10,32 +10,23 @@
         "width": 700,
         "height": 439
       },
-      "dropdowns": [
+      "legends": [
         {
           "id": "pcie_slot",
-          "label": "PCIe slot",
-          "x": 0.42,
-          "y": 0.28,
-          "width": 0.12,
-          "height": 0.08,
+          "marker": "1",
+          "label": "Arrow 1",
           "options": ["PCIe x1", "PCIe x4", "PCIe x16", "M.2 slot"]
         },
         {
           "id": "sata_port",
-          "label": "SATA port",
-          "x": 0.78,
-          "y": 0.62,
-          "width": 0.12,
-          "height": 0.08,
+          "marker": "2",
+          "label": "Arrow 2",
           "options": ["SATA data", "USB header", "Fan header", "Audio header"]
         },
         {
           "id": "fan_header",
-          "label": "Fan header",
-          "x": 0.18,
-          "y": 0.72,
-          "width": 0.12,
-          "height": 0.08,
+          "marker": "3",
+          "label": "Arrow 3",
           "options": ["CPU fan", "Case fan", "RGB header", "SATA power"]
         }
       ],
