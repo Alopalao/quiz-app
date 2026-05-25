@@ -54,11 +54,25 @@ function toPercent(value, axis) {
 }
 
 function hotspotStyle(dropdown) {
-  return {
+  const style = {
     left: `${toPercent(dropdown.x, 'x')}%`,
     top: `${toPercent(dropdown.y, 'y')}%`,
     width: `${toPercent(dropdown.width, 'x')}%`,
   }
+
+  if (dropdown.height !== undefined && dropdown.height !== null) {
+    style.height = `${toPercent(dropdown.height, 'y')}%`
+  }
+
+  return style
+}
+
+function dropdownHeightStyle(dropdown) {
+  if (dropdown.height === undefined || dropdown.height === null) {
+    return null
+  }
+
+  return { height: '100%' }
 }
 
 function dropdownTone(fieldId) {
@@ -117,6 +131,7 @@ const feedbackRows = computed(() => {
               :aria-label="dropdown.label"
               :value="answers[dropdown.id]"
               :class="dropdownTone(dropdown.id)"
+              :style="dropdownHeightStyle(dropdown)"
               @change="onChange(dropdown.id, $event.target.value)"
             >
               <option value="">Select</option>
@@ -177,19 +192,19 @@ const feedbackRows = computed(() => {
 .hotspot {
   position: absolute;
   transform: translate(-50%, -50%);
-  display: grid;
-  gap: 0.3rem;
-  background: #fffaf0;
-  border: 0.0625rem solid rgba(39, 56, 64, 0.18);
-  border-radius: 0.875rem;
-  padding: 0.55rem;
-  box-shadow: 0 0.875rem 1.875rem rgba(24, 44, 54, 0.16);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
 .dropdown-row {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.35rem;
+  width: 100%;
+  height: 100%;
 }
 
 .dropdown-number,
@@ -209,6 +224,7 @@ const feedbackRows = computed(() => {
 
 select {
   width: 100%;
+  flex: 1 1 auto;
   min-width: 0;
   border: 0.0625rem solid #b7c6cc;
   border-radius: 0.625rem;
