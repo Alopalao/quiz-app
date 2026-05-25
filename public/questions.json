@@ -397,97 +397,225 @@
   }
 },
 {
-  "id": "q7",
+  "id": "q8",
   "type": "table",
-  "prompt": "Match each motherboard component with its main function and typical location.",
+  "prompt": "Analyze each laser printer malfunction scenario and match it with the correct internal component responsible for the issue.",
   "columns": [
     { "id": "component", "label": "Component" },
-    { "id": "function", "label": "Function" },
-    { "id": "location", "label": "Typical Location" }
+    { "id": "scenario", "label": "The Scenario" }
   ],
   "rows": [
     {
       "id": "row_1",
+      "hint": "The rubber wheels have become smooth, coated in paper dander, or worn down, losing the friction needed to grip the top sheet.",
       "cells": [
         {
           "columnId": "component",
           "type": "dropdown",
           "fieldId": "row1_component",
           "label": "Row 1 Component",
-          "options": [
-            "CPU Socket",
-            "DIMM Slots",
-            "M.2 Slot",
-            "24-pin ATX"
-          ]
+          "options": ["Pickup Rollers", "Separation Pads", "Registration Rollers", "Duplexing Assembly"]
         },
-        { "columnId": "function", "type": "text", "value": "Holds and connects the processor" },
-        { "columnId": "location", "type": "text", "value": "Upper center area" }
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "The printer sounds like it is trying to print, but the paper never leaves the tray. Alternatively, the printer reports it is out of paper even though the tray is completely full." 
+        }
       ]
     },
     {
       "id": "row_2",
+      "hint": "The separation pad’s high-friction surface has worn out, failing to hold back the lower sheets when the pickup roller spins.",
       "cells": [
-        { "columnId": "component", "type": "text", "value": "DIMM Slots" },
         {
-          "columnId": "function",
+          "columnId": "component",
           "type": "dropdown",
-          "fieldId": "dimm_slots_function",
-          "label": "DIMM Slots Function",
-          "options": [
-            "Holds system memory modules",
-            "Connects graphics card power",
-            "Controls fan speed",
-            "Manages RAID arrays"
-          ]
+          "fieldId": "row2_component",
+          "label": "Row 2 Component",
+          "options": ["Pickup Rollers", "Separation Pads", "Transfer Roller", "Fuser Assembly"]
         },
-        { "columnId": "location", "type": "text", "value": "Right of CPU socket" }
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "The printer tries to grab one piece of paper but accidentally pulls in 3 to 5 sheets at the exact same time, causing an immediate paper jam right as the paper leaves the tray." 
+        }
       ]
     },
     {
       "id": "row_3",
+      "hint": "The rollers are dirty, unevenly worn, or out of sync, releasing one side of the paper slightly faster than the other.",
       "cells": [
         {
           "columnId": "component",
           "type": "dropdown",
           "fieldId": "row3_component",
           "label": "Row 3 Component",
-          "options": [
-            "CPU Socket",
-            "DIMM Slots",
-            "M.2 Slot",
-            "24-pin ATX"
-          ]
+          "options": ["Separation Pads", "Registration Rollers", "Imaging Drum (OPC Drum)", "Cleaning Blade"]
         },
-        { "columnId": "function", "type": "text", "value": "Connects high-speed SSDs" },
-        { "columnId": "location", "type": "text", "value": "Between PCIe slots" }
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "The paper feeds out of the tray fine, but the printed text is noticeably crooked on the page, or the paper consistently jams right before it goes under the imaging drum." 
+        }
       ]
     },
     {
       "id": "row_4",
+      "hint": "The photosensitive surface is physically scratched, damaged by light exposure, or electrically shorted.",
       "cells": [
-        { "columnId": "component", "type": "text", "value": "24-pin ATX" },
         {
-          "columnId": "function",
+          "columnId": "component",
           "type": "dropdown",
-          "fieldId": "atx_24pin_function",
-          "label": "24-pin ATX Function",
-          "options": [
-            "Main power input for motherboard",
-            "Direct CPU cooling control",
-            "Data port for SATA drives",
-            "Audio front-panel connection"
-          ]
+          "fieldId": "row4_component",
+          "label": "Row 4 Component",
+          "options": ["Imaging Drum (OPC Drum)", "Primary Charge Roller (PCR)", "Developing Roller", "Transfer Belt"]
         },
-        { "columnId": "location", "type": "text", "value": "Board right edge" }
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "You get a completely blank white page, a completely jet-black page, or a perfectly straight, sharp line or scratch running all the way down every single page." 
+        }
+      ]
+    },
+    {
+      "id": "row_5",
+      "hint": "If the PCR fails to apply the uniform negative charge (-600V), toner will jump onto every square inch of the drum, drowning the page in black.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row5_component",
+          "label": "Row 5 Component",
+          "options": ["Imaging Drum (OPC Drum)", "Primary Charge Roller (PCR)", "Transfer Roller", "Cleaning Blade"]
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "A completely black page, or a repeating background defect that occurs at a mathematically precise interval down the page." 
+        }
+      ]
+    },
+    {
+      "id": "row_6",
+      "hint": "The roller cannot attract toner because the reservoir is empty, or toner has clumped together unevenly inside the hopper.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row6_component",
+          "label": "Row 6 Component",
+          "options": ["Primary Charge Roller (PCR)", "Developing Roller", "Transfer Roller", "Fuser Assembly"]
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "The image prints out, but the text is incredibly light, or there are clean vertical white streaks running down the page where no ink applied at all." 
+        }
+      ]
+    },
+    {
+      "id": "row_7",
+      "hint": "The transfer roller isn't putting a positive charge on the back of the paper. Without that charge, the toner stays on the drum and refuses to jump onto the paper.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row7_component",
+          "label": "Row 7 Component",
+          "options": ["Developing Roller", "Transfer Roller", "Fuser Assembly", "Transfer Belt"]
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "The printer goes through all the motions, but the paper comes out completely blank or with an image so faint you can barely see it. However, if you open the printer mid-cycle, you can see the toner sitting perfectly on the drum." 
+        }
+      ]
+    },
+    {
+      "id": "row_8",
+      "hint": "The fuser is not reaching its required melting temperature (approx. 180°C). The loose plastic resin particles are sitting on the paper but were never permanently melted into the fibers.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row8_component",
+          "label": "Row 8 Component",
+          "options": ["Registration Rollers", "Transfer Roller", "Fuser Assembly", "Cleaning Blade"]
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "The text looks beautiful and crisp when it exits the printer, but the moment you touch the paper, the toner wipes completely off on your fingers like loose charcoal dust." 
+        }
+      ]
+    },
+    {
+      "id": "row_9",
+      "hint": "The rubber scraper blade is nicked or worn out, failing to physically wipe away residual toner left over from the last rotation of the drum.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row9_component",
+          "label": "Row 9 Component",
+          "options": ["Primary Charge Roller (PCR)", "Fuser Assembly", "Cleaning Blade", "Transfer Belt"]
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "You print a page with a large bold header at the top. Further down the page (or on the next page), you see a faint, blurry 'ghost' echo of that exact same header." 
+        }
+      ]
+    },
+    {
+      "id": "row_10",
+      "hint": "The mechanical gears or reversing rollers responsible for grabbing the sheet at the exit slot and pulling it backward down the return track are broken or obstructed.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row10_component",
+          "label": "Row 10 Component",
+          "options": ["Pickup Rollers", "Registration Rollers", "Duplexing Assembly", "Transfer Belt"]
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "The printer works perfectly when printing normal 1-page documents. The second you select 'Print on Both Sides,' the paper jams immediately after passing through the fuser." 
+        }
+      ]
+    },
+    {
+      "id": "row_11",
+      "hint": "The multi-stage transfer belt is slipping or failing to sync with the individual color drums.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row11_component",
+          "label": "Row 11 Component",
+          "options": ["Imaging Drum (OPC Drum)", "Developing Roller", "Duplexing Assembly", "Transfer Belt"]
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "You print a color photo, but the cyan, magenta, and yellow layers don't line up correctly, making the image look blurry, misaligned, or giving it a 3D-glasses effect." 
+        }
       ]
     }
   ],
   "correct_answers": {
-    "row1_component": "CPU Socket",
-    "dimm_slots_function": "Holds system memory modules",
-    "row3_component": "M.2 Slot",
-    "atx_24pin_function": "Main power input for motherboard"
+    "row1_component": "Pickup Rollers",
+    "row2_component": "Separation Pads",
+    "row3_component": "Registration Rollers",
+    "row4_component": "Imaging Drum (OPC Drum)",
+    "row5_component": "Primary Charge Roller (PCR)",
+    "row6_component": "Developing Roller",
+    "row7_component": "Transfer Roller",
+    "row8_component": "Fuser Assembly",
+    "row9_component": "Cleaning Blade",
+    "row10_component": "Duplexing Assembly",
+    "row11_component": "Transfer Belt"
   }
 }
   ]
