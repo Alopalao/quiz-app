@@ -1,7 +1,7 @@
 {
   "questions": [
 {
-  "id": "q1",
+  "id": "q1: Motherboard I/O Ports",
   "type": "image_legend_dropdown",
   "prompt": "Identify the motherboard I/O back panel ports labeled A through K in the image.",
   "image": {
@@ -93,7 +93,7 @@
   }
 },
     {
-      "id": "q2",
+      "id": "q2: Modify me",
       "type": "incomplete_text",
       "prompt": "Complete the sentence by selecting the correct terms.",
       "parts": [
@@ -117,7 +117,7 @@
       }
     },
     {
-      "id": "q3",
+      "id": "q3: Modify me",
       "type": "multiple_choice",
       "prompt": "Which connector is typically used for fast storage on modern motherboards?",
       "options": [
@@ -129,7 +129,7 @@
       "correct_answers": ["M.2"]
     },
 {
-  "id": "q4",
+  "id": "q4: Motherboard Form Factors",
   "type": "image",
   "prompt": "Identify the correct form factor name and standard dimensions for each motherboard shown below.",
   "image": {
@@ -222,7 +222,7 @@
   }
 },
 {
-  "id": "q5",
+  "id": "q5: DVI Connector Types",
   "type": "image",
   "prompt": "Identify the specific variation of each DVI connector shown in the diagram.",
   "image": {
@@ -286,7 +286,7 @@
   }
 },
 {
-  "id": "q6",
+  "id": "q6: Laser Printer Components",
   "type": "image_legend_dropdown",
   "prompt": "Identify the internal components of a laser printer labeled 1 through 12.",
   "image": {
@@ -397,9 +397,9 @@
   }
 },
 {
-  "id": "q8",
+  "id": "q8: Laser Printer Malfunctions",
   "type": "table",
-  "prompt": "Analyze each laser printer malfunction scenario and match it with the correct internal component responsible for the issue.",
+  "prompt": "Analyze each laser printer malfunction scenario and match it with the correct internal component responsible for the issue. Click on the number for the cause of the issue.",
   "columns": [
     { "id": "component", "label": "Component" },
     { "id": "scenario", "label": "The Scenario" }
@@ -616,6 +616,235 @@
     "row9_component": "Cleaning Blade",
     "row10_component": "Duplexing Assembly",
     "row11_component": "Transfer Belt"
+  }
+},
+{
+  "id": "q9: Impact Printer",
+  "type": "table",
+  "prompt": "Analyze each impact (dot-matrix) printer issue and match it with the component responsible for the failure.",
+  "columns": [
+    { "id": "component", "label": "Component" },
+    { "id": "scenario", "label": "The Scenario" }
+  ],
+  "rows": [
+    {
+      "id": "row_1",
+      "hint": "One of the physical metal pins inside the print head is stuck or broken, failing to strike the ribbon.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row1_component",
+          "label": "Row 1 Component",
+          "options": ["Print Head Pins", "Ink Ribbon Cartridge", "Tractor Feed Sprockets", "Print Head Carriage Belt"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "A multi-part invoice prints out, but a consistent horizontal white line runs through every single line of text across the entire page."
+        }
+      ]
+    },
+    {
+      "id": "row_2",
+      "hint": "The fabric ink ribbon is worn down, dried out, or has become physically unspooled/jammed inside its housing.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row2_component",
+          "label": "Row 2 Component",
+          "options": ["Print Head Pins", "Ink Ribbon Cartridge", "Fuser Assembly", "Inkjet Nozzle Array"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "The printer executes its mechanical tracking correctly, but the text is universally faded, light, or completely invisible."
+        }
+      ]
+    },
+    {
+      "id": "row_3",
+      "hint": "The tractor feed sprockets are misaligned, or the paper tension bars are clamped down too tightly.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row3_component",
+          "label": "Row 3 Component",
+          "options": ["Pickup Rollers", "Tractor Feed Sprockets", "Duplexing Assembly", "Print Head Pins"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "Continuous-form paper (the paper with holes on the sides) constantly tears at the seams, slips off track, or jams inside the feed mechanism."
+        }
+      ]
+    }
+  ],
+  "correct_answers": {
+    "row1_component": "Print Head Pins",
+    "row2_component": "Ink Ribbon Cartridge",
+    "row3_component": "Tractor Feed Sprockets"
+  }
+},
+{
+  "id": "q10: Thermal Printer",
+  "type": "table",
+  "prompt": "Analyze each thermal printer failure scenario and match it with the component or issue responsible.",
+  "columns": [
+    { "id": "component", "label": "Component / Issue" },
+    { "id": "scenario", "label": "The Scenario" }
+  ],
+  "rows": [
+    {
+      "id": "row_1",
+      "hint": "The thermal print head element is burned out, or it isn't receiving power from the internal board.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row1_component",
+          "label": "Row 1 Component",
+          "options": ["Defective Thermal Print Head", "Incorrectly Loaded Thermal Paper", "Worn Rubber Platen Roller", "Depleted Wax/Resin Ribbon"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "The receipt paper feeds through the machine normally, but the emerging paper is completely blank."
+        }
+      ]
+    },
+    {
+      "id": "row_2",
+      "hint": "Thermal paper is chemically treated and heat-sensitive; it only has one active side. If it prints blank, the roll was installed upside down. If it turns black, it was exposed to ambient heat.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row2_component",
+          "label": "Row 2 Component",
+          "options": ["Defective Thermal Print Head", "Incorrectly Loaded Thermal Paper", "Fuser Assembly Overheating", "Toner Cartridge Failure"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "A technician installs a new roll of paper, but the printer outputs completely blank pages. Alternatively, a receipt left in a hot service vehicle turns completely black."
+        }
+      ]
+    },
+    {
+      "id": "row_3",
+      "hint": "The heating element has collected adhesive residue from sticky labels or paper dander. (A+ Solution: Clean the element with Isopropyl Alcohol (IPA) and a lint-free swab).",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row3_component",
+          "label": "Row 3 Component",
+          "options": ["Debris on Thermal Print Head", "Isopropyl Alcohol (IPA) Corrosion", "Broken Print Head Pins", "Slipping Stepper Motor Belt"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "The text on a barcode label is light, smudged, or missing small segments consistently."
+        }
+      ]
+    }
+  ],
+  "correct_answers": {
+    "row1_component": "Defective Thermal Print Head",
+    "row2_component": "Incorrectly Loaded Thermal Paper",
+    "row3_component": "Debris on Thermal Print Head"
+  }
+},
+{
+  "id": "q11: Inkjet Printer Failures",
+  "type": "table",
+  "prompt": "Analyze each inkjet printer failure scenario and match it with the correct component or maintenance procedure responsible.",
+  "columns": [
+    { "id": "component", "label": "Component / Process" },
+    { "id": "scenario", "label": "The Scenario" }
+  ],
+  "rows": [
+    {
+      "id": "row_1",
+      "hint": "A cartridge is empty, or the protective plastic shipping tape was left covering the cartridge’s electrical contacts.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row1_component",
+          "label": "Row 1 Component",
+          "options": ["Protective Tape Left on Ink Cartridge", "Clogged Print Head Nozzles", "Misaligned Print Head Calibration", "Worn Feed Roller assembly"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "Colors are missing from a printed image, or the printer control panel displays an explicit error even though a cartridge was just replaced."
+        }
+      ]
+    },
+    {
+      "id": "row_2",
+      "hint": "Ink has dried and clogged the microscopic print head nozzles. (A+ Solution: Run an internal head cleaning cycle).",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row2_component",
+          "label": "Row 2 Component",
+          "options": ["Protective Tape Left on Ink Cartridge", "Clogged Print Head Nozzles", "Execute Print Head Alignment Utility", "Broken Carriage Belt"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "Printed documents have consistent horizontal white lines streaking through text and graphics, or specific colors fail to print entirely."
+        }
+      ]
+    },
+    {
+      "id": "row_3",
+      "hint": "The carriage belt that moves the print head back and forth is slipping, or a paper scrap is blocking the carriage path.",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row3_component",
+          "label": "Row 3 Component",
+          "options": ["Clogged Print Head Nozzles", "Damaged Print Head Carriage Belt", "Execute Print Head Alignment Utility", "Worn Separation Pad"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "The printer makes a sharp grinding sound and the print job halts mid-cycle, or text is printed completely misaligned and garbled horizontally across the page."
+        }
+      ]
+    },
+    {
+      "id": "row_4",
+      "hint": "The print heads are out of alignment. (A+ Solution: Run the alignment/calibration utility).",
+      "cells": [
+        {
+          "columnId": "component",
+          "type": "dropdown",
+          "fieldId": "row4_component",
+          "label": "Row 4 Component",
+          "options": ["Perform Print Head Cleaning Cycle", "Clogged Print Head Nozzles", "Execute Print Head Alignment Utility", "Damaged Print Head Carriage Belt"]
+        },
+        {
+          "columnId": "scenario",
+          "type": "text",
+          "value": "Lines that should be perfectly straight look jagged, or black text has a blurry, doubled edge."
+        }
+      ]
+    }
+  ],
+  "correct_answers": {
+    "row1_component": "Protective Tape Left on Ink Cartridge",
+    "row2_component": "Clogged Print Head Nozzles",
+    "row3_component": "Damaged Print Head Carriage Belt",
+    "row4_component": "Execute Print Head Alignment Utility"
   }
 }
   ]
