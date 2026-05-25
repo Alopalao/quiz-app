@@ -1,4 +1,6 @@
 <script setup>
+import { computed, ref } from 'vue'
+
 const props = defineProps({
   question: {
     type: Object,
@@ -15,9 +17,48 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update-answer'])
+const naturalSize = ref({ width: 0, height: 0 })
 
 function onChange(fieldId, value) {
   emit('update-answer', { fieldId, value })
+}
+
+function onImageLoad(event) {
+  const imageElement = event.target
+  naturalSize.value = {
+    width: imageElement.naturalWidth,
+    height: imageElement.naturalHeight,
+  }
+}
+
+function toPercent(value, axis) {
+  if (value === undefined || value === null) {
+    return 0
+  }
+
+  // Supports normalized values (0..1) or absolute image-pixel values.
+  if (value <= 1) {
+    return value * 100
+  }
+
+  const sourceSize =
+    axis === 'y'
+      ? props.question.image?.height ?? naturalSize.value.height
+      : props.question.image?.width ?? naturalSize.value.width
+
+  if (!sourceSize) {
+    return 0
+  }
+
+  return (value / sourceSize) * 100
+}
+
+function hotspotStyle(dropdown) {
+  return {
+    left: `${toPercent(dropdown.x, 'x')}%`,
+    top: `${toPercent(dropdown.y, 'y')}%`,
+    width: `${toPercent(dropdown.width, 'x')}%`,
+  }
 }
 
 function dropdownTone(fieldId) {
@@ -29,46 +70,76 @@ function dropdownTone(fieldId) {
   const correctValue = props.question.correct_answers[fieldId]
   return selectedValue === correctValue ? 'select-correct' : 'select-incorrect'
 }
+
+const feedbackRows = computed(() => {
+  if (!props.checked) {
+    return []
+  }
+
+  return props.question.dropdowns.map((dropdown, index) => {
+    const selected = props.answers[dropdown.id] ?? ''
+    const correct = props.question.correct_answers[dropdown.id]
+    const isCorrect = selected === correct
+
+    return {
+      id: dropdown.id,
+      number: index + 1,
+      label: dropdown.label,
+      selected,
+      correct,
+      isCorrect,
+    }
+  })
+})
 </script>
 
 <template>
   <div class="image-question">
     <div class="image-board">
-      <img :src="question.image.src" :alt="question.image.alt" class="question-image" />
+      <div class="image-canvas">
+        <img
+          :src="question.image.src"
+          :alt="question.image.alt"
+          class="question-image"
+          @load="onImageLoad"
+        />
 
-      <div
-        v-for="dropdown in question.dropdowns"
-        :key="dropdown.id"
-        class="hotspot"
-        :style="{
-          left: `${dropdown.x * 100}%`,
-          top: `${dropdown.y * 100}%`,
-          width: `${dropdown.width * 100}%`,
-        }"
-      >
-        <select
-          :id="dropdown.id"
-          :aria-label="dropdown.label"
-          :value="answers[dropdown.id]"
-          :class="dropdownTone(dropdown.id)"
-          @change="onChange(dropdown.id, $event.target.value)"
+        <div
+          v-for="(dropdown, index) in question.dropdowns"
+          :key="dropdown.id"
+          class="hotspot"
+          :style="hotspotStyle(dropdown)"
         >
-          <option value="">Select</option>
-          <option v-for="option in dropdown.options" :key="option" :value="option">
-            {{ option }}
-          </option>
-        </select>
-        <p
-          v-if="checked"
-          class="answer-feedback"
-          :class="dropdownTone(dropdown.id) === 'select-correct' ? 'is-correct' : 'is-incorrect'"
-        >
-          <span v-if="dropdownTone(dropdown.id) === 'select-correct'">Correct selection.</span>
-          <span v-else>
-            Correct: <strong>{{ question.correct_answers[dropdown.id] }}</strong>
-          </span>
-        </p>
+          <div class="dropdown-row">
+            <span class="dropdown-number">{{ index + 1 }}</span>
+            <select
+              :id="dropdown.id"
+              :aria-label="dropdown.label"
+              :value="answers[dropdown.id]"
+              :class="dropdownTone(dropdown.id)"
+              @change="onChange(dropdown.id, $event.target.value)"
+            >
+              <option value="">Select</option>
+              <option v-for="option in dropdown.options" :key="option" :value="option">
+                {{ option }}
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
+
+      <section v-if="checked" class="feedback-panel">
+        <p class="feedback-title">Answer check</p>
+        <ul class="feedback-list">
+          <li v-for="row in feedbackRows" :key="row.id" :class="row.isCorrect ? 'is-correct' : 'is-incorrect'">
+            <span class="feedback-number">{{ row.number }}</span>
+            <span v-if="row.isCorrect"> correct.</span>
+            <span v-else>
+              <strong>{{ row.correct }}</strong>
+            </span>
+          </li>
+        </ul>
+      </section>
     </div>
   </div>
 </template>
@@ -79,7 +150,8 @@ function dropdownTone(fieldId) {
 }
 
 .image-board {
-  position: relative;
+  display: grid;
+  justify-items: center;
   background: #f4ede2;
   border: 0.0625rem solid #d9cdbb;
   border-radius: 1.375rem;
@@ -87,10 +159,18 @@ function dropdownTone(fieldId) {
   overflow: auto;
 }
 
+.image-canvas {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+}
+
 .question-image {
   display: block;
-  width: 100%;
-  min-width: 42.5rem;
+  width: auto;
+  max-width: 100%;
+  max-height: 65vh;
+  height: auto;
   border-radius: 1rem;
 }
 
@@ -99,16 +179,37 @@ function dropdownTone(fieldId) {
   transform: translate(-50%, -50%);
   display: grid;
   gap: 0.3rem;
-  background: rgba(255, 250, 240, 0.95);
+  background: #fffaf0;
   border: 0.0625rem solid rgba(39, 56, 64, 0.18);
   border-radius: 0.875rem;
   padding: 0.55rem;
   box-shadow: 0 0.875rem 1.875rem rgba(24, 44, 54, 0.16);
 }
 
+.dropdown-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.dropdown-number,
+.feedback-number {
+  display: inline-grid;
+  place-items: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 999rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  background: #1f4f63;
+  color: #f1f8fb;
+  flex: 0 0 auto;
+}
+
 select {
   width: 100%;
-  min-width: 7.5rem;
+  min-width: 0;
   border: 0.0625rem solid #b7c6cc;
   border-radius: 0.625rem;
   padding: 0.45rem 0.55rem;
@@ -127,22 +228,50 @@ select.select-incorrect {
   border-color: #ce6c94;
 }
 
-.answer-feedback {
-  margin: 0;
-  font-size: 0.72rem;
+.feedback-panel {
+  margin-top: 0.75rem;
+  width: 100%;
+  background: #fffdf7;
+  border: 0.0625rem solid #dfd4c1;
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.8rem;
 }
 
-.answer-feedback.is-correct {
+.feedback-title {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #3b4b52;
+}
+
+.feedback-list {
+  margin: 0.5rem 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.78rem;
+}
+
+.feedback-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.feedback-list li.is-correct {
   color: #28553d;
 }
 
-.answer-feedback.is-incorrect {
+.feedback-list li.is-incorrect {
   color: #7a3653;
 }
 
 @media (max-width: 60rem) {
   .question-image {
-    min-width: 35rem;
+    max-height: 50vh;
   }
 }
 </style>

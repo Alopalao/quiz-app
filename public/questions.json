@@ -6,7 +6,9 @@
       "prompt": "Identify the motherboard ports in the image.",
       "image": {
         "src": "images/motherboard.jpg",
-        "alt": "Motherboard diagram"
+        "alt": "Motherboard diagram",
+        "width": 700,
+        "height": 439
       },
       "dropdowns": [
         {
@@ -75,6 +77,91 @@
         "PS/2"
       ],
       "correct_answers": ["M.2"]
+    },
+{
+  "id": "q4",
+  "type": "image",
+  "prompt": "Identify the correct form factor name and standard dimensions for each motherboard shown below.",
+  "image": {
+    "src": "images/mother_types.jpg",
+    "alt": "Comparison of different motherboard form factors"
+  },
+  "dropdowns": [
+    {
+      "id": "eatx_name",
+      "label": "Form Factor 1",
+      "x": 0.14,
+      "y": 0.83,
+      "width": 0.10,
+      "options": ["ATX", "EATX", "micro-ATX", "SSI EEB"]
+    },
+    {
+      "id": "eatx_dim",
+      "label": "Dimensions 1",
+      "x": 0.14,
+      "y": 0.93,
+      "width": 0.12,
+      "options": ["12 x 13 inches", "12 x 10.7 inches", "12 x 9.6 inches", "9.6 x 9.6 inches"]
+    },
+    {
+      "id": "atx_name",
+      "label": "Form Factor 2",
+      "x": 0.42,
+      "y": 0.83,
+      "width": 0.10,
+      "options": ["ATX", "EATX", "micro-ATX", "Mini-ITX"]
+    },
+    {
+      "id": "atx_dim",
+      "label": "Dimensions 2",
+      "x": 0.42,
+      "y": 0.93,
+      "width": 0.12,
+      "options": ["12 x 10.7 inches", "12 x 9.6 inches", "9.6 x 9.6 inches", "8.5 x 7.5 inches"]
+    },
+    {
+      "id": "micro_atx_name",
+      "label": "Form Factor 3",
+      "x": 0.67,
+      "y": 0.83,
+      "width": 0.20,
+      "options": ["ATX", "micro-ATX", "Mini-ITX", "Mini-DTX"]
+    },
+    {
+      "id": "micro_atx_dim",
+      "label": "Dimensions 3",
+      "x": 0.67,
+      "y": 0.93,
+      "width": 0.12,
+      "options": ["12 x 9.6 inches", "9.6 x 9.6 inches", "6.7 x 6.7 inches", "9.6 x 8.0 inches"]
+    },
+    {
+      "id": "mini_itx_name",
+      "label": "Form Factor 4",
+      "x": 0.90,
+      "y": 0.83,
+      "width": 0.19,
+      "options": ["micro-ATX", "Mini-ITX", "Nano-ITX", "Mini-DTX"]
+    },
+    {
+      "id": "mini_itx_dim",
+      "label": "Dimensions 4",
+      "x": 0.90,
+      "y": 0.93,
+      "width": 0.12,
+      "options": ["9.6 x 9.6 inches", "7.0 x 7.0 inches", "6.7 x 6.7 inches", "4.7 x 4.7 inches"]
     }
+  ],
+  "correct_answers": {
+    "eatx_name": "EATX",
+    "eatx_dim": "12 x 10.7 inches",
+    "atx_name": "ATX",
+    "atx_dim": "12 x 9.6 inches",
+    "micro_atx_name": "micro-ATX",
+    "micro_atx_dim": "9.6 x 9.6 inches",
+    "mini_itx_name": "Mini-ITX",
+    "mini_itx_dim": "6.7 x 6.7 inches"
+  }
+}
   ]
 }

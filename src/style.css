@@ -39,7 +39,6 @@ button {
 .quiz-shell {
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
 }
 
 .quiz-main {
@@ -47,7 +46,6 @@ button {
   padding: 2rem;
   display: grid;
   gap: 1.5rem;
-  align-content: start;
 }
 
 .quiz-header {
@@ -97,8 +95,6 @@ h2 {
   padding: 1.5rem;
   display: grid;
   gap: 1.5rem;
-  align-content: start;
-  grid-auto-rows: max-content;
 }
 
 .state-panel {
@@ -147,18 +143,15 @@ h2 {
 .question-actions {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   gap: 0.75rem;
 }
 
 .nav-button {
   border: none;
   border-radius: 0.875rem;
-  height: 3.125rem;
-  width: 8.75rem;
-  padding: 0 1.1rem;
+  padding: 0.8rem 1.1rem;
+  min-width: 7.5rem;
   font-weight: 700;
-  flex: 0 0 auto;
 }
 
 .nav-button.primary {

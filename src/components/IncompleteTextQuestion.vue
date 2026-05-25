@@ -55,7 +55,8 @@ function blankTone(fieldId) {
             >
               <span v-if="blankTone(part.id) === 'select-correct'">Correct.</span>
               <span v-else>
-                Correct: <strong>{{ question.correct_answers[part.id] }}</strong>
+                Your answer: <strong>{{ answers[part.id] || 'No answer selected' }}</strong>
+                | Correct: <strong>{{ question.correct_answers[part.id] }}</strong>
               </span>
             </span>
           </span>
