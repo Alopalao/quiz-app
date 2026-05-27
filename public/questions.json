@@ -846,6 +846,92 @@
     "row3_component": "Damaged Print Head Carriage Belt",
     "row4_component": "Execute Print Head Alignment Utility"
   }
+},
+{
+  "id": "q12: Hard Drive Form Factors",
+  "type": "table",
+  "prompt": "Identify the correct hard drive form factor based on its spindle speeds and primary deployment scenario.",
+  "columns": [
+    { "id": "form_factor", "label": "Form Factor (Physical Size)" },
+    { "id": "spindle_speed", "label": "Common Spindle Speeds (RPM)" },
+    { "id": "scenario", "label": "Primary A+ Exam Target / Usage Scenario" }
+  ],
+  "rows": [
+    {
+      "id": "row_1",
+      "hint": "This size is the standard for desktop towers, Network Attached Storage (NAS) appliances, and large-scale SAN storage arrays running high-speed mechanical drives.",
+      "cells": [
+        {
+          "columnId": "form_factor",
+          "type": "dropdown",
+          "fieldId": "row1_size",
+          "label": "Row 1 Size",
+          "options": ["3.5-inch", "2.5-inch", "1.8-inch", "M.2 2280"]
+        },
+        { 
+          "columnId": "spindle_speed", 
+          "type": "text", 
+          "value": "5,400 RPM / 7,200 RPM / 10,000 RPM / 15,000 RPM" 
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "Optimized strictly for raw capacity and legacy high-availability array configurations. This standard footprint is commonly deployed inside stationary system tower enclosures, network-attached storage (NAS) appliances, and full-depth server rack backplanes." 
+        }
+      ]
+    },
+    {
+      "id": "row_2",
+      "hint": "This size is universally used for consumer laptop computers, small-form-factor (SFF) office machines, high-density server blades, and enclosed 2.5-inch SATA Solid-State Drives.",
+      "cells": [
+        {
+          "columnId": "form_factor",
+          "type": "dropdown",
+          "fieldId": "row2_size",
+          "label": "Row 2 Size",
+          "options": ["3.5-inch", "2.5-inch", "1.8-inch", "mSATA"]
+        },
+        { 
+          "columnId": "spindle_speed", 
+          "type": "text", 
+          "value": "5,400 RPM / 7,200 RPM / 10,000 RPM / 15,000 RPM" 
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "Designed to balance power-draw, heat generation, and physical footprint. This configuration populates portable computing hosts and modern high-density blade servers, and shares an identical mounting profile with legacy enclosed flash-memory upgrades." 
+        }
+      ]
+    },
+    {
+      "id": "row_3",
+      "hint": "This size is found inside legacy ultra-portable sub-notebooks, early generations of thin netbooks, and classic consumer electronics like legacy portable media players (e.g., older iPods).",
+      "cells": [
+        {
+          "columnId": "form_factor",
+          "type": "dropdown",
+          "fieldId": "row3_size",
+          "label": "Row 3 Size",
+          "options": ["2.5-inch", "1.8-inch", "M.2 2242", "CFast card"]
+        },
+        { 
+          "columnId": "spindle_speed", 
+          "type": "text", 
+          "value": "3,600 RPM / 4,200 RPM (or Solid-State)" 
+        },
+        { 
+          "columnId": "scenario", 
+          "type": "text", 
+          "value": "A specialty niche configuration constrained to highly restrictive mechanical spaces. It operates at lower rotational speeds to mitigate structural thermal buildup and is typically isolated to legacy thin host equipment and vintage consumer electronics." 
+        }
+      ]
+    }
+  ],
+  "correct_answers": {
+    "row1_size": "3.5-inch",
+    "row2_size": "2.5-inch",
+    "row3_size": "1.8-inch"
+  }
 }
   ]
 }

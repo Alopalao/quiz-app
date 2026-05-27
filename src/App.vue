@@ -190,6 +190,28 @@ function clearCurrentAnswers() {
   checked[question.id] = false
 }
 
+function autocompleteCurrentAnswers() {
+  if (!currentQuestion.value) {
+    return
+  }
+
+  const question = currentQuestion.value
+
+  if (question.type === 'multiple_choice') {
+    answers[question.id] = {
+      ...answers[question.id],
+      selection: question.correct_answers[0] ?? '',
+    }
+  } else {
+    answers[question.id] = {
+      ...answers[question.id],
+      ...question.correct_answers,
+    }
+  }
+
+  checked[question.id] = false
+}
+
 function previousQuestion() {
   currentIndex.value = Math.max(0, currentIndex.value - 1)
 }
@@ -293,6 +315,9 @@ function goToQuestion(index) {
           </button>
           <button class="nav-button secondary" @click="clearCurrentAnswers">
             Clear Answers
+          </button>
+          <button class="nav-button secondary" @click="autocompleteCurrentAnswers">
+            Autocomplete
           </button>
           <button class="nav-button primary" @click="checkCurrentQuestion">
             Check Answer
